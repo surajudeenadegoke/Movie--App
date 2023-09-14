@@ -1,23 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import SearchIcon from "../Images/Icon.png";
 import "../index.css";
 
+const SearchBar = ({ setMovies }) => {
+  const [searchField, setSearchField] = useState("");
+  const onSearchChange = (event) => {
+    const searchString = event.target.value.toLocaleLowerCase();
+    setSearchField(searchString);
+  };
 
-const SearchBar = ({ searchItem, setSearchItem, setMovies }) => {
   return (
     <div className="search">
       <input
         placeholder="Search for movies"
-        value={searchItem}
-        onChange={(e) => {
-          setSearchItem(e.target.value);
-        }}
+        value={searchField}
+        onChange={onSearchChange}
       />
       <img
         src={SearchIcon}
         alt="movie1.Title"
         onClick={() => {
-          setMovies(searchItem);
+          setMovies(searchField);
         }}
       />
     </div>
