@@ -1,0 +1,34 @@
+.card-container {
+  width: 20rem;
+  background-color: rgb(32, 33, 35);
+  color: white;
+  padding: 5px;
+}
+.card-img-container {
+  width: 100%;
+  height: 15rem;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+.card-img {
+  width: 90%;
+  height: 100%;
+  object-fit: fill;
+}
+.card-details-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 8px;
+  gap: 4px;
+  padding: 10px;
+  color: aliceblue;
+}
+.card-title-container {
+  font-size: 20px;
+}
+.rating-container {
+  display: flex;
+  justify-content: space-between;
+  color: antiquewhite;
+}
