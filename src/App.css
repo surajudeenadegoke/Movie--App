@@ -1,11 +1,14 @@
-*{
-  border:0;
+* {
+  border: 0;
   padding: 0;
   box-sizing: border-box;
   /* background-color: rgb(111, 47, 47); */
 }
-body{
-    background-image: linear-gradient(to bottom,rgb(10, 137, 10),rgb(101, 88, 247),rgb(53, 227, 249));
+body {
+  background-image: linear-gradient(
+    to bottom,
+    rgb(10, 137, 10),
+    rgb(240, 247, 232),
+    rgb(150, 232, 243)
+  );
 }
-
-

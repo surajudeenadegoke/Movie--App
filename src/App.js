@@ -1,31 +1,48 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import Header from "./Components/Header";
 import Movies from "./Components/Movies";
 import SearchBar from "./Components/SearchBar";
-
-// const url = "http://www.omdbapi.com/?i=tt3896198&d380cfbd=d380cfbd";
-const url = "http://www.omdbapi.com/?apikey=d380cfbd&t=The Shawshank Redemption"
-
+const apiKey = "d380cfbd";
+const searchQuery = "movies;";
+const url = `http://www.omdbapi.com/?apikey=${apiKey}&s=${searchQuery}`;
 
 const App = () => {
-  const searchMovies = async () => {
+  const [movies, setMovies] = useState([]);
+  const [state, setState] = useState({ searchValue: "", results: [] });
+
+  const fetchMovies = async () => {
     try {
       const response = await fetch(url);
       const data = await response.json();
-      console.log(data);
+      setMovies(data);
+      console.log(movies);
     } catch (error) {
       console.log(error);
     }
   };
   useEffect(() => {
-    searchMovies();
+    fetchMovies();
   }, []);
+  const handleChange = (event) => {
+    let search = event.target.value;
+    setState((prev) => {
+      return {
+        ...prev,
+        searchValue: search,
+      };
+    });
+    console.log(search)
+  };
+  const searchMovies = () => {
+    console.log(state.searchValue);
+  };
+
   return (
     <div className="container">
       <div className="header-content">
         <Header />
-        <SearchBar />
+        <SearchBar searchMovies={searchMovies} handleChange={handleChange} />
       </div>
       <Movies />
       {/* <Footer /> */}
