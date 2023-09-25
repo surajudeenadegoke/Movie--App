@@ -1,26 +1,24 @@
 import React from "react";
 import "../MovieCard/movieCard.css";
-const CardMovie = () => {
+const CardMovie = ({ movie }) => {
+  console.log(movie)
   return (
     <div className="card-container">
       <div className="card-img-container">
-        <img
-          className="card-img"
-          src="https://m.media-amazon.com/images/M/MV5BNDE3ODcxYzMtY2YzZC00NmNlLWJiNDMtZDViZWM2MzIxZDYwXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_SX300.jpg"
-          alt=""
-        />
+        <img className="card-img" src={movie.Poster } alt="" />
       </div>
 
       <div className="card-details-container">
         <div className="card-title-container">
-          <span className="title">My Mother</span>
+          <span className="title">{movie.Title}</span>
         </div>
         <div className="genre-container">
-          <span className="genre">Genre: Draw, Crime</span>
+          <span className="genre">Genre: {movie.Type}</span>
         </div>
         <div className="rating-container">
-          <span>Rating:4.0 </span>
-          <span>124 mins</span>
+          <span>Year: {movie.Year} </span>
+          <span>ID: {movie.imdbID}
+</span>
         </div>
       </div>
     </div>

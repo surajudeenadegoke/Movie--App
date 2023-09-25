@@ -4,7 +4,7 @@ import "../index.css"
 const Header = () => {
   return (
     <div className="header">
-    <h1>Movie App</h1>
+    <h1>Movies Search App</h1>
     </div>
   );
 }

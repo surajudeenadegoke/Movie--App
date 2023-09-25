@@ -1,29 +1,31 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./App.css";
 import Header from "./Components/Header";
-import Movies from "./Components/Movies";
+import CardMovie from "./Components/MovieCard/MovieCard";
+import "./index.css";
+
 import SearchBar from "./Components/SearchBar";
 const apiKey = "d380cfbd";
-const searchQuery = "movies;";
-const url = `http://www.omdbapi.com/?apikey=${apiKey}&s=${searchQuery}`;
 
 const App = () => {
-  const [movies, setMovies] = useState([]);
   const [state, setState] = useState({ searchValue: "", results: [] });
-
+  const searchQuery = state.searchValue;
+  const url = `http://www.omdbapi.com/?apikey=${apiKey}&s=${searchQuery}`;
   const fetchMovies = async () => {
     try {
       const response = await fetch(url);
       const data = await response.json();
-      setMovies(data);
-      console.log(movies);
+      setState((prev) => {
+        return { ...prev, results: data.Search };
+      });
     } catch (error) {
       console.log(error);
     }
   };
-  useEffect(() => {
+
+  const searchMovies = () => {
     fetchMovies();
-  }, []);
+  };
   const handleChange = (event) => {
     let search = event.target.value;
     setState((prev) => {
@@ -32,10 +34,6 @@ const App = () => {
         searchValue: search,
       };
     });
-    console.log(search)
-  };
-  const searchMovies = () => {
-    console.log(state.searchValue);
   };
 
   return (
@@ -44,8 +42,12 @@ const App = () => {
         <Header />
         <SearchBar searchMovies={searchMovies} handleChange={handleChange} />
       </div>
-      <Movies />
-      {/* <Footer /> */}
+
+      <div className="movies-container">
+        {state.results.map((result) => (
+          <CardMovie movie={result} />
+        ))}
+      </div>
     </div>
   );
 };
